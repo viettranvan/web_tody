@@ -1,0 +1,15 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "ryuk.viettran.todyapp.dev",
+                "paths": [ "*" ]
+            },
+            {
+                "appID": "ryuk.viettran.todyapp",
+                "paths": [ "*" ]
+            }
+        ]
+    }
+}

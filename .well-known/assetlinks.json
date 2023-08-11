@@ -1,0 +1,18 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "ryuk.viettran.todyapp",
+      "sha256_cert_fingerprints":
+      ["25:68:DF:BD:37:AD:F6:CF:6C:C3:BD:91:3E:68:96:03:81:B2:EA:F5:2D:13:CC:F6:7C:D2:24:6D:56:D6:1C:2A"]
+    }
+    },
+    {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "ryuk.viettran.todyapp.dev",
+      "sha256_cert_fingerprints":
+      ["25:68:DF:BD:37:AD:F6:CF:6C:C3:BD:91:3E:68:96:03:81:B2:EA:F5:2D:13:CC:F6:7C:D2:24:6D:56:D6:1C:2A"]
+    }
+  }]
