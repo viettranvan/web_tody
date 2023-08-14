@@ -74,6 +74,8 @@
                 });
 
                 if (res.status == 200) {
+                    document.getElementById("btn-reset").style.display = "block";
+                    document.getElementById("txt-error").style.display = "none";
                     if (isMobile) {
                         const url =
                             `todyapp://viettran.todyapp/reset-password?oobCode=${oobCode}&apiKey=${apiKey}`;
