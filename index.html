@@ -68,10 +68,9 @@
                 var res = await fetch(apiUrl, {
                     headers: { "Content-Type": "application/json" },
                     method: "POST",
-                    body: {
+                    body: JSON.stringify({
                         "oobCode": oobCode
-                    }
-
+                    }),
                 });
 
                 if (res.status == 200) {
