@@ -1,55 +1,70 @@
 <!doctype html>
 
 <head>
-  <title>Illustatus</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="./js/iro.min.js"></script>
-  <link rel="icon" type="image/png" href="./img/favicon.ico">
-  <link href="./css/style.css" rel="stylesheet">
+    <title>TodyApp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="./js/iro.min.js"></script>
+    <link rel="icon" type="image/png" href="./img/favicon.ico">
+    <link href="./css/style.css" rel="stylesheet">
 </head>
 
 
-<body class="bg-purple">
-        
-  <div class="stars">
-      <div class="custom-navbar">
-          <div class="brand-logo">
-              <img src="http://salehriaz.com/404Page/img/logo.svg" width="80px">
-          </div>
-          <div class="navbar-links">
-              <ul>
-                <li><a href="http://salehriaz.com/404Page/404.html" target="_blank">Home</a></li>
-                <li><a href="http://salehriaz.com/404Page/404.html" target="_blank">About</a></li>
-                <li><a href="http://salehriaz.com/404Page/404.html" target="_blank">Features</a></li>
-                <li><a href="http://salehriaz.com/404Page/404.html" class="btn-request" target="_blank">Request A Demo</a></li>
-              </ul>
-          </div>
-      </div>
-      <div class="central-body">
-          <img class="image-404" src="http://salehriaz.com/404Page/img/404.svg" width="300px">
-          <a href="http://salehriaz.com/404Page/404.html" class="btn-go-home" target="_blank">GO BACK HOME</a>
-      </div>
-      <div class="objects">
-          <img class="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" width="40px">
-          <div class="earth-moon">
-              <img class="object_earth" src="http://salehriaz.com/404Page/img/earth.svg" width="100px">
-              <img class="object_moon" src="http://salehriaz.com/404Page/img/moon.svg" width="80px">
-          </div>
-          <div class="box_astronaut">
-              <img class="object_astronaut" src="http://salehriaz.com/404Page/img/astronaut.svg" width="140px">
-          </div>
-      </div>
-      <div class="glowing_stars">
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
+<body class="bg-purple" onload="openApp()">
+    <div class="stars">
 
-      </div>
+        <div class="central-body">
+            <img class="image-404" src="http://salehriaz.com/404Page/img/404.svg" width="300px">
+        </div>
+        <div class="objects">
+            <img class="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" width="40px">
+            <div class="earth-moon">
+                <img class="object_earth" src="http://salehriaz.com/404Page/img/earth.svg" width="100px">
+                <img class="object_moon" src="http://salehriaz.com/404Page/img/moon.svg" width="80px">
+            </div>
+            <div class="box_astronaut">
+                <img class="object_astronaut" src="http://salehriaz.com/404Page/img/astronaut.svg" width="140px">
+            </div>
+        </div>
+    </div>
 
-  </div>
+    <script>
+        function changeColor() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const oobCode = urlParams.get('oobCode');
+            const apiKey = urlParams.get('apiKey');
+
+            let userAgent = navigator.userAgent;
+            if (userAgent.match(/android/i) || userAgent.match(/iphone/i)) {
+                alert('Mobile: oobCode:' + oobCode + '\napiKey:' + apiKey);
+            } else {
+                alert('Web');
+            }
+        }
+    </script>
+
+    <script>
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const oobCode = urlParams.get('oobCode');
+        const apiKey = urlParams.get('apiKey');
+
+
+        function openApp() {
+            if (oobCode != null && apiKey != null) {
+                if (isMobile) {
+                    const url =
+                        `todyapp://viettran.todyapp/reset-password?oobCode=${oobCode}&apiKey=${apiKey}`;
+                    window.location.replace(url);
+                } else {
+                    var url = `https://todyapp-2f8fd.firebaseapp.com/__/auth/action?mode=resetPassword&oobCode=${oobCode}&apiKey=${apiKey}&lang=en`;
+                    window.location.replace(url);
+                }
+            }
+        }
+    </script>
 
 </body>
