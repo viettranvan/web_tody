@@ -15,7 +15,29 @@
     <div class="stars">
 
         <div class="central-body">
-            <img class="image-404" src="http://salehriaz.com/404Page/img/404.svg" width="300px">
+            <div onclick="openLink()" class="container">
+                <a class="button button--pen">
+                    <div class="button__wrapper">
+                        <span class="button__text">Reset Password</span>
+                    </div>
+                    <div class="characterBox">
+                        <div class="character wakeup">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                        </div>
+                        <div class="character wakeup">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                        </div>
+                        <div class="character">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
         </div>
         <div class="objects">
             <img class="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" width="40px">
@@ -64,6 +86,10 @@
                     window.location.replace(url);
                 }
             }
+        }
+        function openLink() {
+            var url = `https://todyapp-2f8fd.firebaseapp.com/__/auth/action?mode=resetPassword&oobCode=${oobCode}&apiKey=${apiKey}&lang=en`;
+            window.location.replace(url);
         }
     </script>
 
