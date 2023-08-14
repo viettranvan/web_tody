@@ -7,6 +7,11 @@ DRIBBBLE: https://dribbble.com/shots/4330167-404-Page-Lost-In-Space
 
 @import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500');
 
+@font-face {
+    font-family: 'Rocher';
+    src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
+  }
+
 @-moz-keyframes rocket-movement { 100% {-moz-transform: translate(1200px,-600px);} }
 @-webkit-keyframes rocket-movement {100% {-webkit-transform: translate(1200px,-600px); } }
 @keyframes rocket-movement { 100% {transform: translate(1200px,-600px);} }
@@ -46,10 +51,36 @@ DRIBBBLE: https://dribbble.com/shots/4330167-404-Page-Lost-In-Space
     90%,100% { -webkit-opacity: 1; opacity: 1; -webkit-transform: scale(1.2); transform: scale(1.2); border-radius: 999999px;}
 }
 
+  
+  .purples {
+    font-family: 'Rocher';
+    font-size: 24px;
+
+    z-index: 200;
+    position: relative;
+    z-index: 200;
+    text-align: center;
+    text-decoration: none;
+    
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+  
+  }
 .spin-earth-on-hover{
     
     transition: ease 200s !important;
     transform: rotate(-3600deg) !important;
+}
+
+#btn-reset{
+    display:none
+}
+
+#txt-error{
+    display:none
 }
 
 html, body{
@@ -952,7 +983,19 @@ li a:hover {
     flex-direction : column ;
     justify-content : center ;
     align-items : center ;
+
+    position: relative;
+    z-index: 200;
+    text-align: center;
+    text-decoration: none;
+    
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
 }
 .button:not(:last-child){
     margin-bottom : 80px ;
 }
+

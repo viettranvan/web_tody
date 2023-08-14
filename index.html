@@ -14,7 +14,7 @@
 <body class="bg-purple" onload="openApp()">
     <div class="stars">
 
-        <div class="central-body">
+        <div id="btn-reset" class="central-body">
             <div onclick="openLink()" class="container">
                 <a class="button button--pen">
                     <div class="button__wrapper">
@@ -36,7 +36,9 @@
                     </div>
                 </a>
             </div>
-
+        </div>
+        <div id="txt-error" class="central-body">
+            <h6 class="purples">Your request to reset your password has expired or the link has already been used</h6>
 
         </div>
         <div class="objects">
@@ -52,22 +54,6 @@
     </div>
 
     <script>
-        function changeColor() {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const oobCode = urlParams.get('oobCode');
-            const apiKey = urlParams.get('apiKey');
-
-            let userAgent = navigator.userAgent;
-            if (userAgent.match(/android/i) || userAgent.match(/iphone/i)) {
-                alert('Mobile: oobCode:' + oobCode + '\napiKey:' + apiKey);
-            } else {
-                alert('Web');
-            }
-        }
-    </script>
-
-    <script>
         var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -75,16 +61,36 @@
         const apiKey = urlParams.get('apiKey');
 
 
-        function openApp() {
+        async function openApp() {
+            console.log('here');
             if (oobCode != null && apiKey != null) {
-                if (isMobile) {
-                    const url =
-                        `todyapp://viettran.todyapp/reset-password?oobCode=${oobCode}&apiKey=${apiKey}`;
-                    window.location.replace(url);
+                var apiUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/resetPassword?key=${apiKey}`;
+                var res = await fetch(apiUrl, {
+                    headers: { "Content-Type": "application/json" },
+                    method: "POST",
+                    body: {
+                        "oobCode": oobCode
+                    }
+
+                });
+
+                if (res.status == 200) {
+                    if (isMobile) {
+                        const url =
+                            `todyapp://viettran.todyapp/reset-password?oobCode=${oobCode}&apiKey=${apiKey}`;
+                        window.location.replace(url);
+                    } else {
+                        var url = `https://todyapp-2f8fd.firebaseapp.com/__/auth/action?mode=resetPassword&oobCode=${oobCode}&apiKey=${apiKey}&lang=en`;
+                        window.location.replace(url);
+                    }
                 } else {
-                    var url = `https://todyapp-2f8fd.firebaseapp.com/__/auth/action?mode=resetPassword&oobCode=${oobCode}&apiKey=${apiKey}&lang=en`;
-                    window.location.replace(url);
+                    document.getElementById("btn-reset").style.display = "none";
+                    document.getElementById("txt-error").style.display = "block";
                 }
+
+            } else {
+                document.getElementById("btn-reset").style.display = "none";
+                document.getElementById("txt-error").style.display = "block";
             }
         }
         function openLink() {
