@@ -71,19 +71,22 @@
                     }),
                 }).then((response) => {
                     if (response.status == 200) {
-                        var json = response.json();
-                        var email = json["email"];
-                        document.getElementById("btn-reset").style.display = "block";
-                        document.getElementById("txt-error").style.display = "none";
+                        response.json().then((value) => {
+                            var email = value["email"];
+                            console.log(email);
+                            document.getElementById("btn-reset").style.display = "block";
+                            document.getElementById("txt-error").style.display = "none";
 
-                        if (isMobile) {
-                            const url =
-                                `todyapp://viettran.todyapp/reset-password?oobCode=${oobCode}&apiKey=${apiKey}&email=${email}`;
-                            window.location.replace(url);
-                        } else {
-                            var url = `https://todyapp-2f8fd.firebaseapp.com/__/auth/action?mode=resetPassword&oobCode=${oobCode}&apiKey=${apiKey}&lang=en`;
-                            window.location.replace(url);
-                        }
+                            if (isMobile) {
+                                const url =
+                                    `todyapp://viettran.todyapp/reset-password?oobCode=${oobCode}&apiKey=${apiKey}&email=${email}`;
+                                window.location.replace(url);
+                            } else {
+                                var url = `https://todyapp-2f8fd.firebaseapp.com/__/auth/action?mode=resetPassword&oobCode=${oobCode}&apiKey=${apiKey}&lang=en`;
+                                window.location.replace(url);
+                            }
+                        });
+
                     } else {
                         document.getElementById("btn-reset").style.display = "none";
                         document.getElementById("txt-error").style.display = "block";
